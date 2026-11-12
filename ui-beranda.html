@@ -1,0 +1,1235 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theatron | Beranda</title>
+<style>
+/* Embedded from assets/css/pages.css */
+/* ==========================================================================
+   Theatron — Pola per halaman
+   Status layar penuh, hero detail, tab tiket, ruang tunggu, dan QR.
+   ========================================================================== */
+
+/* --- Layar status penuh (belum / berhasil) -------------------------------- */
+
+.status-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px var(--gutter) 0;
+  text-align: center;
+}
+
+.status-screen__icon {
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  border-radius: 48px;
+  margin-bottom: 22px;
+}
+
+.status-screen__icon--success {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.status-screen__icon--warning {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.status-screen__title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink-weak);
+}
+
+.status-screen__text {
+  margin-top: 8px;
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--muted-soft);
+}
+
+/* --- Countdown ------------------------------------------------------------ */
+
+.countdown {
+  padding: 20px;
+  text-align: center;
+}
+
+.countdown__label {
+  font-size: var(--text-sm);
+  color: var(--muted-soft);
+}
+
+.countdown__value {
+  padding-top: 6px;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent-soft-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown__hint {
+  padding-top: 4px;
+  font-size: var(--text-xs);
+  color: var(--muted-soft);
+}
+
+/* --- Hero detail event ---------------------------------------------------- */
+
+.event-hero {
+  position: relative;
+  overflow: hidden;
+  height: 160px;
+  margin: 0 var(--gutter);
+  border-radius: var(--radius-xl);
+  flex: none;
+}
+
+.event-hero .art__label {
+  left: 14px;
+  top: 14px;
+}
+
+.event-detail {
+  padding: 14px var(--gutter) 0;
+}
+
+.event-detail__title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink-weak);
+}
+
+.event-detail__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  font-size: var(--text-xs);
+  color: var(--muted-soft);
+}
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.event-meta__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--text-base);
+  color: var(--ink-weak);
+}
+
+.event-meta__icon {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--accent-soft-bg);
+  color: var(--accent-badge-text);
+}
+
+.event-detail__section-title {
+  margin-top: 16px;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--ink-weak);
+}
+
+.event-detail__desc {
+  margin-top: 6px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted-soft);
+}
+
+.price-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+}
+
+.price-card__name {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--ink-weak);
+}
+
+.price-card__note {
+  padding-top: 2px;
+  font-size: var(--text-xs);
+  color: var(--muted-soft);
+}
+
+.price-card__value {
+  font-size: var(--text-md);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* --- Timer angka besar (detail belum dibuka) ------------------------------ */
+
+.timer {
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.timer__label {
+  font-size: var(--text-sm);
+  color: var(--muted-soft);
+}
+
+.timer__digits {
+  padding-top: 8px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+}
+
+.timer__unit {
+  text-align: center;
+}
+
+.timer__number {
+  width: 64px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--accent-soft-bg);
+  color: var(--accent-soft-text);
+  font-size: 28px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer__caption {
+  padding-top: 4px;
+  font-size: 11.5px;
+  color: var(--muted-soft);
+}
+
+.timer__colon {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-soft-text);
+}
+/* --- Tab tiket ------------------------------------------------------------ */
+
+.tabs {
+  display: flex;
+  padding: 0 var(--gutter);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.tabs__tab {
+  flex: 1;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--muted-soft);
+  transition: color 0.16s ease, border-color 0.16s ease;
+}
+
+.tabs__tab[aria-selected="true"] {
+  border-bottom-color: var(--accent-solid);
+  color: var(--ink-weak);
+  font-weight: 700;
+}
+
+.tabs__panel {
+  padding: 16px var(--gutter) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tabs__panel[hidden] {
+  display: none !important;
+}
+
+.tabs__panel:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: -3px;
+}
+
+/* --- Kartu tiket + QR ----------------------------------------------------- */
+
+.ticket-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-xl);
+}
+
+.ticket-card__qr {
+  width: 104px;
+  height: 104px;
+  flex: none;
+  padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+}
+
+.ticket-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ticket-card__title {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--ink-weak);
+}
+
+.ticket-card__meta {
+  padding-top: 4px;
+  font-size: var(--text-xs);
+  color: var(--muted-soft);
+}
+
+
+/* Embedded from assets/css/tokens.css */
+/* ==========================================================================
+   Theatron — Design tokens
+   Satu-satunya sumber kebenaran untuk warna, radius, bayangan, dan tipografi.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* --- Warna dasar --- */
+  --ink: #202521;
+  --ink-weak: #1D1B1A;
+  --muted: #565D57;
+  --muted-soft: #5C5A55;
+  --muted-line: #8A8478;
+
+  --paper: #FBF8F1;
+  --card: #F7F5F0;
+  --canvas: #E9E3DA;
+  --surface: #FFFFFF;
+
+  --line: #DDD5C8;
+  --line-soft: #E4DFD5;
+  --line-dashed: #CFC8BA;
+
+  /* --- Aksen ---
+     --accent-solid : isian tombol & penanda aktif (kontras tinggi)
+     --accent       : garis, ikon, dan teks aksen di atas latar terang
+     Hanya dua peran ini. Jangan ditukar. */
+  --accent-solid: #D2431B;
+  --accent-solid-hover: #B8350F;
+  --accent: #BF4527;
+  --accent-hover: #A63314;
+
+  --accent-soft-bg: #FBE9E3;
+  --accent-soft-text: #8F2A0A;
+  --accent-badge-text: #B8350F;
+
+  /* --- Status --- */
+  --success-bg: #E1F2EE;
+  --success-text: #0B6E5B;
+  --success-text-strong: #0B4F41;
+  --warning-bg: #FBF1CF;
+  --warning-text: #6B4E00;
+  --danger-bg: #FBE9E3;
+  --danger-text: #8F2A0A;
+  --info-bg: #E9ECF3;
+  --info-text: #4A4D57;
+  --info-icon: #1F2A44;
+
+  /* --- Radius --- */
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+  --radius-frame: 28px;
+
+  /* --- Bayangan --- */
+  --shadow: 0 22px 60px rgba(38, 31, 23, 0.12);
+  --shadow-card: 0 5px 16px rgba(38, 31, 23, 0.045);
+  --shadow-card-hover: 0 9px 22px rgba(38, 31, 23, 0.09);
+
+  /* --- Tipografi --- */
+  --font-sans: "Plus Jakarta Sans", system-ui, "Segoe UI", Roboto, sans-serif;
+  --text-2xs: 11px;
+  --text-xs: 12.5px;
+  --text-sm: 13px;
+  --text-base: 14px;
+  --text-md: 15px;
+  --text-lg: 16px;
+  --text-xl: 17px;
+  --text-2xl: 24px;
+  --text-display: 56px;
+
+  /* --- Jarak --- */
+  --gutter: 20px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 10px;
+  --space-4: 12px;
+  --space-5: 14px;
+  --space-6: 16px;
+  --space-7: 20px;
+  --space-8: 24px;
+
+  /* --- Gerak & fokus --- */
+  --transition: transform 0.16s ease, filter 0.16s ease;
+  --transition-card: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  --focus-ring: 3px solid var(--ink);
+  --focus-offset: 3px;
+
+  /* --- Ukuran bingkai ponsel --- */
+  --frame-width: 390px;
+  --frame-height: 844px;
+}
+
+
+/* Embedded from assets/css/base.css */
+/* ==========================================================================
+   Theatron — Base
+   Reset ringan, kerangka bingkai ponsel, tipografi dasar, fokus, gerak.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 28px 16px;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button:not(:disabled),
+label[for],
+summary {
+  cursor: pointer;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* --- Bingkai ponsel ------------------------------------------------------ */
+
+.frame {
+  width: var(--frame-width);
+  max-width: 100%;
+  min-height: var(--frame-height);
+  margin: 0 auto;
+  background: var(--card);
+  color: var(--ink-weak);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-frame);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.frame__main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* --- Fokus ----------------------------------------------------------------- */
+
+:where(a[href], button, input, select, textarea, [tabindex]):focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: 4px;
+}
+
+/* --- Utilitas -------------------------------------------------------------- */
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack--tight {
+  gap: 10px;
+}
+
+.stack--loose {
+  gap: 16px;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+/* --- Layar kecil: bingkai memenuhi viewport --------------------------------- */
+
+@media (max-width: 480px) {
+  body {
+    display: block;
+    padding: 0;
+    background: var(--paper);
+  }
+
+  .frame {
+    width: 100%;
+    min-height: 100svh;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* --- Hormati preferensi gerak ---------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* Embedded from assets/css/components.css */
+/* ==========================================================================
+   Theatron — Components
+   Header, tombol, kartu event, chip, navigasi bawah, form, dan status.
+   ========================================================================== */
+
+/* --- Header aplikasi ------------------------------------------------------ */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px var(--gutter) 12px;
+  flex: none;
+}
+
+.app-header__title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--ink-weak);
+  text-align: center;
+  line-height: 1.25;
+}
+
+.app-header__side {
+  width: 44px;
+  height: 44px;
+  flex: none;
+}
+
+/* --- Merek ---------------------------------------------------------------- */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand__mark {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-solid);
+  color: #FFFFFF;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.brand__name {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--ink-weak);
+}
+
+/* --- Tombol --------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 54px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary {
+  background: var(--accent-solid);
+  color: #FFFFFF;
+}
+
+.btn--primary:disabled,
+.btn--primary[aria-disabled="true"] {
+  background: var(--line-soft);
+  color: var(--muted-soft);
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--ink-weak);
+  border: 1.5px solid var(--ink-weak);
+}
+
+.btn--quiet {
+  background: var(--surface);
+  color: var(--ink-weak);
+  border: 1px solid var(--line-soft);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--accent-soft-text);
+  text-decoration: none;
+}
+
+.btn-text:hover {
+  text-decoration: underline;
+}
+/* Tombol ikon bulat 44x44 */
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--ink-weak);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.icon-btn:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.icon-btn:active {
+  transform: translateY(0);
+}
+
+.icon-btn--accent {
+  background: var(--accent-solid);
+  border-color: var(--accent-solid);
+  color: #FFFFFF;
+}
+
+.icon-btn--outline {
+  border: 1.5px solid var(--muted-line);
+}
+
+.icon-btn--flat {
+  width: 36px;
+  height: 36px;
+  border-color: transparent;
+  background: transparent;
+}
+
+.icon-btn:disabled,
+.icon-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+/* --- Kartu ---------------------------------------------------------------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.card--pad {
+  padding: 16px;
+}
+
+.card--round {
+  border-radius: var(--radius-xl);
+}
+
+.card--flat {
+  box-shadow: none;
+}
+
+/* --- Kolom pencarian ------------------------------------------------------- */
+
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  margin: 16px var(--gutter) 0;
+  padding: 0 6px 0 14px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  color: var(--muted-soft);
+}
+
+.search-field:focus-within {
+  border-color: var(--ink-weak);
+  box-shadow: 0 0 0 3px rgba(32, 37, 33, 0.14);
+}
+
+.search-field__icon {
+  flex: none;
+}
+
+.search-field__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--text-base);
+  color: var(--ink-weak);
+}
+
+.search-field__input::placeholder {
+  color: var(--muted-soft);
+}
+
+.search-field:has(.search-field__input:focus-visible) {
+  outline: none;
+}
+
+/* --- Chip filter ---------------------------------------------------------- */
+
+.chip-row {
+  display: flex;
+  gap: 8px;
+  padding: 14px var(--gutter) 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chip-row::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  flex: none;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--ink-weak);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.chip:hover {
+  filter: brightness(0.96);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--ink-weak);
+  border-color: var(--ink-weak);
+  color: #FFFFFF;
+}
+
+/* --- Header seksi --------------------------------------------------------- */
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px var(--gutter) 0;
+}
+
+.section-header__title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--ink-weak);
+}
+
+.section-header__link {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--accent-soft-text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.section-header__link:hover {
+  text-decoration: underline;
+}
+/* --- Karya seni kartu -----------------------------------------------------
+   Menggantikan blob <div> bertumpuk: dua lingkaran digambar sebagai
+   radial-gradient sehingga ikut menyesuaikan ukuran kartu apa pun.
+   -------------------------------------------------------------------------- */
+
+.art {
+  position: relative;
+  flex: none;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: var(--art-bg, var(--ink-weak));
+  background-image:
+    radial-gradient(circle at 112% -18%, var(--art-1, transparent) 0 var(--art-1-size, 36%), transparent calc(var(--art-1-size, 36%) + 1px)),
+    radial-gradient(circle at -12% 118%, var(--art-2, transparent) 0 var(--art-2-size, 26%), transparent calc(var(--art-2-size, 26%) + 1px));
+  background-repeat: no-repeat;
+}
+
+.art--single {
+  background-image:
+    radial-gradient(circle at 112% 118%, var(--art-1, transparent) 0 var(--art-1-size, 34%), transparent calc(var(--art-1-size, 34%) + 1px));
+}
+
+.art__label {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink-weak);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+/* --- Kartu event ---------------------------------------------------------- */
+
+.event-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-card);
+}
+
+.event-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.event-card__media {
+  width: 72px;
+  height: 72px;
+}
+
+.event-card__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.event-card__title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink-weak);
+  overflow-wrap: anywhere;
+}
+
+.event-card__meta {
+  font-size: var(--text-xs);
+  color: var(--muted-soft);
+}
+
+.event-card__price {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink-weak);
+}
+
+.event-card__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.event-card--wide {
+  min-height: 140px;
+  padding: 12px;
+  gap: 14px;
+  scroll-snap-align: start;
+  width: min(340px, calc(100vw - 48px));
+}
+
+.event-card--wide .event-card__media {
+  width: 116px;
+  height: 116px;
+  border-radius: var(--radius-md);
+}
+
+.event-card--wide .event-card__title {
+  font-size: var(--text-md);
+}
+
+.event-card--wide .event-card__body {
+  gap: 4px;
+}
+
+.event-card--media-lg .event-card__media {
+  width: 80px;
+  height: 80px;
+}
+
+/* --- Daftar & rail -------------------------------------------------------- */
+
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 var(--gutter);
+}
+
+.event-rail {
+  display: flex;
+  gap: 14px;
+  padding: 0 var(--gutter);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.event-rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Navigasi bawah ------------------------------------------------------- */
+
+.bottom-nav {
+  display: flex;
+  height: 72px;
+  margin-top: auto;
+  flex: none;
+  background: var(--surface);
+  border-top: 1px solid var(--line-soft);
+}
+
+.bottom-nav__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 44px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--muted-soft);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.bottom-nav__item:hover {
+  color: var(--ink-weak);
+}
+
+.bottom-nav__item[aria-current="page"] {
+  color: var(--accent-soft-text);
+  font-weight: 700;
+}
+/* --- Badge & tag ---------------------------------------------------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.badge--accent {
+  background: var(--accent-soft-bg);
+  color: var(--accent-badge-text);
+}
+
+.badge--success {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.badge--warning {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+}
+
+
+  body{margin:0}
+  body{background:#E9E6DF;display:flex;justify-content:center}
+  :root{--ink:#202521;--ink-weak:#1D1B1A;--muted:#565D57;--muted-soft:#5C5A55;--paper:#FBF8F1;--card:#F7F5F0;--canvas:#E9E3DA;--line:#DDD5C8;--line-soft:#E4DFD5;--accent:#BF4527;--accent-solid:#D2431B;--accent-hover:#A63314;--accent-soft-bg:#FBE9E3;--accent-soft-text:#8F2A0A;--radius-sm:10px;--radius-md:14px;--radius-lg:16px;--radius-frame:28px;--shadow:0 22px 60px rgba(38,31,23,.12);--shadow-card:0 5px 16px rgba(38,31,23,.045);--transition:transform .16s ease,filter .16s ease;--focus-ring:3px solid var(--ink);--focus-offset:3px}
+  *{box-sizing:border-box}
+  html{line-height:1.5}
+  body{min-height:100vh;padding:28px 16px;background:var(--canvas);color:var(--ink);font-family:system-ui,"Segoe UI",sans-serif;display:flex;justify-content:center}
+  .frame{width:390px!important;max-width:100%;min-height:844px;height:auto!important;margin:0;overflow:visible!important;background:var(--card)!important;color:var(--ink-weak)!important;border:1px solid var(--line)!important;border-radius:var(--radius-frame)!important;box-shadow:var(--shadow)!important;display:flex;flex-direction:column;font-family:"Plus Jakarta Sans",system-ui,sans-serif}
+  .frame > *{font-family:inherit}
+  @media(max-width:480px){body{display:block;padding:0;background:var(--paper)}.frame{width:100%!important;min-height:100svh!important;border:0!important;border-radius:0!important;box-shadow:none!important}}
+  @media(prefers-reduced-motion:reduce){*,::before,::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+  .theatron-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;flex:none}
+  .theatron-brand{display:flex;align-items:center;gap:10px}
+  .logo-box{width:48px;height:48px;flex:none;display:grid;place-items:center;overflow:visible;border-radius:0;background:transparent}.logo-art{display:block;width:48px;height:48px;border:0;outline:none;box-shadow:none;background:transparent}
+  .logo-text{font-size:16px;font-weight:700;color:var(--ink-weak)}
+  .btn-back{position:relative;width:44px;height:44px;border-radius:22px;border:1px solid var(--line-soft);background:#FFFFFF;color:var(--ink-weak);display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;transition:var(--transition)}
+  .btn-back:hover{filter:brightness(.95);transform:translateY(-1px)}
+  .btn-back:active{transform:translateY(0)}
+  .btn-back svg{width:22px;height:22px}
+  .header-spacer{width:44px;height:44px;flex:none}
+  .search-bar{margin:16px 20px 0;height:48px;border-radius:var(--radius-md);background:#FFFFFF;border:1px solid var(--line-soft);display:flex;align-items:center;gap:10px;padding:0 14px;box-sizing:border-box;color:var(--muted-soft)}
+  .search-bar svg{width:20px;height:20px;flex:none}
+  .search-bar input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-family:inherit;font-size:14px;color:var(--ink-weak)}
+  .chip-group{display:flex;gap:8px;padding:14px 20px 0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .chip-group::-webkit-scrollbar,#rec-list::-webkit-scrollbar{display:none}
+  .chip{height:38px;padding:0 16px;border-radius:19px;border:1px solid var(--line-soft);background:#FFFFFF;color:var(--ink-weak);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition)}
+  .chip.active{background:var(--ink-weak);color:#FFFFFF;border-color:var(--ink-weak)}
+  .chip:hover{filter:brightness(.95)}
+  .section-header{padding:14px 20px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .section-title{font-size:17px;font-weight:700;margin:0;color:var(--ink-weak)}
+  .card-event{display:flex;gap:12px;align-items:center;padding:10px;background:#FFFFFF;border:1px solid var(--line-soft);border-radius:var(--radius-lg);text-decoration:none;color:inherit;flex:none}
+  .card-event:hover{filter:brightness(.98);transform:translateY(-1px)}
+  .card-image{position:relative;overflow:hidden;width:72px;height:72px;border-radius:12px;flex:none}
+  .card-info{flex:1;min-width:0}
+  .card-title{font-size:14.5px;font-weight:700;margin:0 0 2px}
+  .card-meta{font-size:12.5px;color:#5C5A55;margin:0 0 4px}
+  .card-price{font-size:13px;font-weight:600;margin:0}
+  .bottom-bar{height:72px;flex:none;margin-top:auto;background:#FFFFFF;border-top:1px solid var(--line-soft);display:flex}
+  .bottom-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11px;font-weight:500;text-decoration:none;color:var(--muted-soft);transition:var(--transition)}
+  .bottom-item.active{color:var(--accent-soft-text);font-weight:700}
+  .bottom-item svg{width:22px;height:22px}
+  .bottom-item:focus-visible{outline:var(--focus-ring);outline-offset:var(--focus-offset)}
+  #rec-list{display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  #rec-list > a{scroll-snap-align:start}
+  .home-recommendation{width:min(340px,calc(100vw - 48px));min-height:140px;padding:12px;gap:14px}
+  .home-recommendation .card-image{width:116px;height:116px;border-radius:14px}
+  .home-recommendation .card-info{display:flex;flex-direction:column;gap:5px}
+  .home-event-list .card-image{width:80px;height:80px}
+  @media(min-width:481px){.home-recommendation{width:340px}}
+</style>
+</head>
+<body>
+<div class="frame">
+<div class="theatron-header">
+  <div class="theatron-brand">
+    <div class="logo-box"><img class="logo-art" src="assets/brand/logo-mark.svg" alt="Logo Theatron" width="48" height="48"></div>
+    <span class="logo-text">Theatron</span>
+  </div>
+  <button class="btn-back" aria-label="Notifikasi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7"/><path d="M10 19a2 2 0 0 0 4 0"/></svg><span style="position:absolute;top:11px;right:12px;width:8px;height:8px;border-radius:4px;background:var(--accent-solid)"></span></button>
+</div>
+<form action="ui-cari.html" class="search-bar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input name="q" aria-label="Cari event" placeholder="Cari event, artis, atau lokasi..."></form>
+
+<div class="chip-group">
+  <button type="button" data-category-filter="all" class="chip active" aria-pressed="true">Semua</button>
+  <button type="button" data-category-filter="konser" class="chip" aria-pressed="false">Konser</button>
+  <button type="button" data-category-filter="pameran" class="chip" aria-pressed="false">Pameran</button>
+  <button type="button" data-category-filter="olahraga" class="chip" aria-pressed="false">Olahraga</button>
+  <button type="button" data-category-filter="seminar" class="chip" aria-pressed="false">Seminar</button>
+</div>
+<div class="section-header">
+  <h2 class="section-title">Rekomendasi untuk Kamu</h2>
+  <a href="ui-cari.html" style="font-size:13px;font-weight:600;color:var(--accent-soft-text);text-decoration:none">Lihat semua</a>
+</div>
+<div id="rec-list" role="region" aria-label="Daftar rekomendasi acara" tabindex="0" style="padding:0 20px;display:flex">
+  <a href="ui-detail.html" class="card-event home-recommendation" data-category="konser">
+    <div class="card-image" style="background:#1F2A44"><div style="position:absolute;width:130px;height:130px;border-radius:65px;background:#D2431B;right:-24px;top:-34px"></div><div style="position:absolute;width:76px;height:76px;border-radius:38px;background:#E8B931;left:22px;bottom:-28px"></div><span style="position:absolute;left:12px;top:12px;background:#FFFFFF;color:#1D1B1A;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:12px">Konser</span></div>
+    <div class="card-info" style="display:flex;flex-direction:column;gap:4px"><div style="font-size:15px;font-weight:700">Konser Musik Senja</div><div style="font-size:12.5px;color:#5C5A55">Sab, 12 Des 2026 · Semarang</div><div style="font-size:14px;font-weight:600">Rp 150.000</div></div>
+  </a>
+  <a href="ui-detail.html" class="card-event home-recommendation" data-category="pameran">
+    <div class="card-image" style="background:#0B3D3A"><div style="position:absolute;width:110px;height:110px;border-radius:55px;background:#E8B931;left:-20px;top:-30px"></div><div style="position:absolute;width:90px;height:90px;border-radius:45px;background:#E8826A;right:20px;bottom:-34px"></div><span style="position:absolute;left:12px;top:12px;background:#FFFFFF;color:#1D1B1A;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:12px">Pameran</span></div>
+    <div class="card-info" style="display:flex;flex-direction:column;gap:4px"><div style="font-size:15px;font-weight:700">Pameran Seni Rupa</div><div style="font-size:12.5px;color:#5C5A55">Min, 20 Des 2026 · Semarang</div><div style="font-size:14px;font-weight:600">Rp 50.000</div></div>
+  </a>
+</div>
+<div class="section-header">
+  <h2 class="section-title">Event Terpopuler</h2>
+  <a href="ui-cari.html" style="font-size:13px;font-weight:600;color:var(--accent-soft-text);text-decoration:none">Lihat semua</a>
+</div>
+<div class="home-event-list" style="display:flex;flex-direction:column;gap:10px;padding:0 20px">
+  <a href="ui-detail.html" class="card-event" data-category="kuliner">
+    <div class="card-image" style="background:#D2431B"><div style="position:absolute;width:50px;height:50px;border-radius:25px;background:#1F2A44;right:-12px;bottom:-12px"></div></div>
+    <div class="card-info"><div class="card-title">Festival Kuliner Kampus</div><div class="card-meta">Sab, 28 Nov 2026 · Semarang</div><div class="card-price">Mulai Rp 25.000</div></div>
+  </a>
+  <a href="ui-detail.html" class="card-event" data-category="seminar">
+    <div class="card-image" style="background:#0B3D3A"><div style="position:absolute;width:50px;height:50px;border-radius:25px;background:#E8B931;right:-12px;bottom:-12px"></div></div>
+    <div class="card-info"><div class="card-title">Seminar Karier Teknologi</div><div class="card-meta">Rab, 9 Des 2026 · Semarang</div><div class="card-price">Mulai Rp 35.000</div></div>
+  </a>
+  <a href="ui-detail.html" class="card-event" data-category="pameran">
+    <div class="card-image" style="background:#6B3E56"><div style="position:absolute;width:58px;height:58px;border-radius:50%;background:#E8B931;right:-14px;top:-15px"></div><div style="position:absolute;width:34px;height:34px;border-radius:50%;background:#F7F5F0;left:10px;bottom:8px"></div></div>
+    <div class="card-info"><div class="card-title">Pameran Fotografi Semarang</div><div class="card-meta">Sab, 5 Des 2026 · Semarang</div><div class="card-price">Mulai Rp 40.000</div></div>
+  </a>
+  <a href="ui-detail.html" class="card-event" data-category="olahraga">
+    <div class="card-image" style="background:#245448"><div style="position:absolute;width:54px;height:54px;border-radius:50%;background:#E8826A;right:-12px;bottom:-12px"></div><div style="position:absolute;width:28px;height:28px;border-radius:50%;background:#E8B931;left:10px;top:10px"></div></div>
+    <div class="card-info"><div class="card-title">Turnamen Futsal Kampus</div><div class="card-meta">Min, 6 Des 2026 · Semarang</div><div class="card-price">Mulai Rp 20.000</div></div>
+  </a>
+</div>
+<nav class="bottom-bar" aria-label="Menu utama">
+  <a href="ui-beranda.html" class="bottom-item active"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Beranda</a>
+  <a href="ui-cari.html" class="bottom-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Cari</a>
+  <a href="ui-tiket.html" class="bottom-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9a3 3 0 0 1 0 6v3h18v-3a3 3 0 0 1 0-6V6H3z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg>Tiket Saya</a>
+  <a href="ui-masuk.html" class="bottom-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Akun</a>
+</nav>
+</div>
+<style>
+.rec-arrow{width:36px;height:36px;display:grid;place-items:center;padding:0;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--ink)}
+.rec-arrow:hover{background:#f2eee6}
+#rec-list>a{scroll-snap-align:start}
+:where(a[href],button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #202521;outline-offset:3px}button{font-family:inherit}button:not(:disabled){cursor:pointer}[hidden]{display:none!important}body>div .card-event{transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}body>div .card-event:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(38,31,23,.09)}body>div .btn-primary:active,body>div .btn-secondary:active,body>div .btn-icon-circle:active{transform:scale(.985)}@media(prefers-reduced-motion:reduce){body>div .card-event,body>div .btn-primary,body>div .btn-secondary,body>div .btn-icon-circle{transition:none!important}}</style>
+<script>
+(() => {
+  const filters = Array.from(document.querySelectorAll('[data-category-filter][aria-pressed]'));
+  const cards = Array.from(document.querySelectorAll('#rec-list > a, .home-event-list > a'));
+  filters.forEach((filter) => filter.addEventListener('click', () => {
+    const category = filter.dataset.categoryFilter;
+    filters.forEach((item) => {
+      const active = item === filter;
+      item.classList.toggle('active', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
+    cards.forEach((card) => { card.hidden = category !== 'all' && card.dataset.category !== category; });
+  }));
+})();
+</script></body>
+</html>
