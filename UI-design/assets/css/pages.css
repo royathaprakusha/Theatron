@@ -1,0 +1,319 @@
+/* ==========================================================================
+   Theatron — Pola per halaman
+   Status layar penuh, hero detail, tab tiket, ruang tunggu, dan QR.
+   ========================================================================== */
+
+/* --- Layar status penuh (belum / berhasil) -------------------------------- */
+
+.status-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px var(--gutter) 0;
+  text-align: center;
+}
+
+.status-screen__icon {
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  border-radius: 48px;
+  margin-bottom: 22px;
+}
+
+.status-screen__icon--success {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.status-screen__icon--warning {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.status-screen__title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink-weak);
+}
+
+.status-screen__text {
+  margin-top: 8px;
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--muted-soft);
+}
+
+/* --- Countdown ------------------------------------------------------------ */
+
+.countdown {
+  padding: 20px;
+  text-align: center;
+}
+
+.countdown__label {
+  font-size: var(--text-sm);
+  color: var(--muted-soft);
+}
+
+.countdown__value {
+  padding-top: 6px;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent-soft-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown__hint {
+  padding-top: 4px;
+  font-size: var(--text-xs);
+  color: var(--muted-soft);
+}
+
+/* --- Hero detail event ---------------------------------------------------- */
+
+.event-hero {
+  position: relative;
+  overflow: hidden;
+  height: 160px;
+  margin: 0 var(--gutter);
+  border-radius: var(--radius-xl);
+  flex: none;
+}
+
+.event-hero .art__label {
+  left: 14px;
+  top: 14px;
+}
+
+.event-detail {
+  padding: 14px var(--gutter) 0;
+}
+
+.event-detail__title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink-weak);
+}
+
+.event-detail__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  font-size: var(--text-xs);
+  color: var(--muted-soft);
+}
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.event-meta__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--text-base);
+  color: var(--ink-weak);
+}
+
+.event-meta__icon {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--accent-soft-bg);
+  color: var(--accent-badge-text);
+}
+
+.event-detail__section-title {
+  margin-top: 16px;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--ink-weak);
+}
+
+.event-detail__desc {
+  margin-top: 6px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted-soft);
+}
+
+.price-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+}
+
+.price-card__name {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--ink-weak);
+}
+
+.price-card__note {
+  padding-top: 2px;
+  font-size: var(--text-xs);
+  color: var(--muted-soft);
+}
+
+.price-card__value {
+  font-size: var(--text-md);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* --- Timer angka besar (detail belum dibuka) ------------------------------ */
+
+.timer {
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.timer__label {
+  font-size: var(--text-sm);
+  color: var(--muted-soft);
+}
+
+.timer__digits {
+  padding-top: 8px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+}
+
+.timer__unit {
+  text-align: center;
+}
+
+.timer__number {
+  width: 64px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--accent-soft-bg);
+  color: var(--accent-soft-text);
+  font-size: 28px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer__caption {
+  padding-top: 4px;
+  font-size: 11.5px;
+  color: var(--muted-soft);
+}
+
+.timer__colon {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-soft-text);
+}
+/* --- Tab tiket ------------------------------------------------------------ */
+
+.tabs {
+  display: flex;
+  padding: 0 var(--gutter);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.tabs__tab {
+  flex: 1;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--muted-soft);
+  transition: color 0.16s ease, border-color 0.16s ease;
+}
+
+.tabs__tab[aria-selected="true"] {
+  border-bottom-color: var(--accent-solid);
+  color: var(--ink-weak);
+  font-weight: 700;
+}
+
+.tabs__panel {
+  padding: 16px var(--gutter) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tabs__panel[hidden] {
+  display: none !important;
+}
+
+.tabs__panel:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: -3px;
+}
+
+/* --- Kartu tiket + QR ----------------------------------------------------- */
+
+.ticket-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-xl);
+}
+
+.ticket-card__qr {
+  width: 104px;
+  height: 104px;
+  flex: none;
+  padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+}
+
+.ticket-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ticket-card__title {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--ink-weak);
+}
+
+.ticket-card__meta {
+  padding-top: 4px;
+  font-size: var(--text-xs);
+  color: var(--muted-soft);
+}

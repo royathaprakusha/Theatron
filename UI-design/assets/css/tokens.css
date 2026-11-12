@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Theatron — Design tokens
+   Satu-satunya sumber kebenaran untuk warna, radius, bayangan, dan tipografi.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* --- Warna dasar --- */
+  --ink: #202521;
+  --ink-weak: #1D1B1A;
+  --muted: #565D57;
+  --muted-soft: #5C5A55;
+  --muted-line: #8A8478;
+
+  --paper: #FBF8F1;
+  --card: #F7F5F0;
+  --canvas: #E9E3DA;
+  --surface: #FFFFFF;
+
+  --line: #DDD5C8;
+  --line-soft: #E4DFD5;
+  --line-dashed: #CFC8BA;
+
+  /* --- Aksen ---
+     --accent-solid : isian tombol & penanda aktif (kontras tinggi)
+     --accent       : garis, ikon, dan teks aksen di atas latar terang
+     Hanya dua peran ini. Jangan ditukar. */
+  --accent-solid: #D2431B;
+  --accent-solid-hover: #B8350F;
+  --accent: #BF4527;
+  --accent-hover: #A63314;
+
+  --accent-soft-bg: #FBE9E3;
+  --accent-soft-text: #8F2A0A;
+  --accent-badge-text: #B8350F;
+
+  /* --- Status --- */
+  --success-bg: #E1F2EE;
+  --success-text: #0B6E5B;
+  --success-text-strong: #0B4F41;
+  --warning-bg: #FBF1CF;
+  --warning-text: #6B4E00;
+  --danger-bg: #FBE9E3;
+  --danger-text: #8F2A0A;
+  --info-bg: #E9ECF3;
+  --info-text: #4A4D57;
+  --info-icon: #1F2A44;
+
+  /* --- Radius --- */
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+  --radius-frame: 28px;
+
+  /* --- Bayangan --- */
+  --shadow: 0 22px 60px rgba(38, 31, 23, 0.12);
+  --shadow-card: 0 5px 16px rgba(38, 31, 23, 0.045);
+  --shadow-card-hover: 0 9px 22px rgba(38, 31, 23, 0.09);
+
+  /* --- Tipografi --- */
+  --font-sans: "Plus Jakarta Sans", system-ui, "Segoe UI", Roboto, sans-serif;
+  --text-2xs: 11px;
+  --text-xs: 12.5px;
+  --text-sm: 13px;
+  --text-base: 14px;
+  --text-md: 15px;
+  --text-lg: 16px;
+  --text-xl: 17px;
+  --text-2xl: 24px;
+  --text-display: 56px;
+
+  /* --- Jarak --- */
+  --gutter: 20px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 10px;
+  --space-4: 12px;
+  --space-5: 14px;
+  --space-6: 16px;
+  --space-7: 20px;
+  --space-8: 24px;
+
+  /* --- Gerak & fokus --- */
+  --transition: transform 0.16s ease, filter 0.16s ease;
+  --transition-card: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  --focus-ring: 3px solid var(--ink);
+  --focus-offset: 3px;
+
+  /* --- Ukuran bingkai ponsel --- */
+  --frame-width: 390px;
+  --frame-height: 844px;
+}
